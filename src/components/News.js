@@ -94,7 +94,7 @@ export default class News extends Component {
   render() {
     return (
       <>
-        <h1>TurboNews</h1>
+        <h1 className="display-4">TurboNews</h1>
         {/* {this.state.loading && <Spinner />}  */}
         <InfiniteScroll
           dataLength={this.state.articles.length}
@@ -105,27 +105,34 @@ export default class News extends Component {
           loader={<Spinner />}
         >
           <div>
-            <div className="row row-cols-3">
-              {this.state.articles.map((element) => {
-                return (
-                  <div className="col g-2 " key={element.url}>
-                    <NewsItem
-                      source={element.source.name}
-                      auther={element.auther}
-                      time={element.publishedAt}
-                      title={element.title}
-                      description={element.description}
-                      imageurl={
-                        element.urlToImage
-                          ? element.urlToImage
-                          : "https://images.cointelegraph.com/images/1200_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjEtMDkvNDViODE0MmEtZDlkYi00OGY1LWI1N2UtMmRjYzRmNDM3OTBhLmpwZw==.jpg"
-                      }
-                      url={element.url}
-                    />
+            <section class="wrapper">
+              <div class="container-fostrap">
+                <div class="content">
+                  <div class="container">
+                    <div class="row">
+                      {this.state.articles.map((element) => {
+                        return (
+                          <NewsItem
+                            key={element.url}
+                            source={element.source.name}
+                            auther={element.auther}
+                            time={element.publishedAt}
+                            title={element.title}
+                            description={element.description}
+                            imageurl={
+                              element.urlToImage
+                                ? element.urlToImage
+                                : "https://images.cointelegraph.com/images/1200_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjEtMDkvNDViODE0MmEtZDlkYi00OGY1LWI1N2UtMmRjYzRmNDM3OTBhLmpwZw==.jpg"
+                            }
+                            url={element.url}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              </div>
+            </section>
           </div>
           {/* <div className="d-flex justify-content-between">
                     <button disabled={this.state.page <= 1} onClick={this.getprevious} type="button" className="btn btn-dark">Previous</button>
