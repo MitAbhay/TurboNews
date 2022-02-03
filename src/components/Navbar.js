@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default class Navbar extends Component {
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor:"black"}}>
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               TurboNews
@@ -25,7 +25,7 @@ export default class Navbar extends Component {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto h5">
                 <li className="nav-item">
                   <Link
                     className="nav-link active"
@@ -66,7 +66,14 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
               </ul>
-              <form className="d-flex">
+              <a href="https://github.com/MitAbhay/TurboNews">
+              <img src="https://img.icons8.com/ios-glyphs/60/ffffff/github.png" alt ="github_logo"/>
+              </a>
+
+              {/* <Link className="navbar-brand" to="/">
+              <img src="../assets/github_logo.jpg" alt="github_logo"/>
+            </Link> */}
+              {/* <form className="d-flex">
                 <input
                   className="form-control me-2"
                   type="search"
@@ -76,7 +83,7 @@ export default class Navbar extends Component {
                 <button className="btn btn-outline-success" type="submit">
                   Search
                 </button>
-              </form>
+              </form> */}
             </div>
           </div>
         </nav>

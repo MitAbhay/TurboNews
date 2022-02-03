@@ -6,10 +6,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export default class News extends Component {
   constructor() {
     super();
-    console.log("I am a constructor");
+    // console.log("I am a constructor");
 
     this.state = {
-      articles: [],
+      Articles: [],
+      TotalResults: [],
       loading: true,
       page: 1,
     };
@@ -25,12 +26,12 @@ export default class News extends Component {
 
     let parseddata = await data.json();
 
-    console.log(parseddata);
+    // console.log(parseddata);
     this.props.setprogress(75);
 
     this.setState({
-      articles: parseddata.articles,
-      totalresults: parseddata.totalresults,
+      Articles: parseddata.articles,
+      TotalResults: parseddata.totalResults,
     });
 
     this.props.setprogress(100);
@@ -86,31 +87,38 @@ export default class News extends Component {
     let parsedData = await data.json();
 
     this.setState({
-      articles: this.state.articles.concat(parsedData.articles),
-      totalResults: parsedData.totalResults,
+      Articles: this.state.Articles.concat(parsedData.articles),
+      TotalResults: parsedData.totalResults,
     });
+    console.log(this.state.TotalResults);
+    console.log(this.state.Articles);
   };
 
   render() {
     return (
       <>
-        <h1 className="display-4">TurboNews</h1>
+        <h1 className="display-4 text-white" style={{ paddingTop: "72px" }}>
+          TurboNews
+        </h1>
         {/* {this.state.loading && <Spinner />}  */}
         <InfiniteScroll
-          dataLength={this.state.articles.length}
+          dataLength={this.state.Articles.length}
           next={this.fetchMoreData}
-          hasMore={
-            this.state.articles.length !== this.state.articles.totalResults
-          }
+          hasMore={this.state.Articles.length !== this.state.TotalResults}
           loader={<Spinner />}
+          endMessage={
+            <p style={{ textAlign: "center" , color: "white" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
         >
           <div>
-            <section class="wrapper">
-              <div class="container-fostrap">
-                <div class="content">
-                  <div class="container">
-                    <div class="row">
-                      {this.state.articles.map((element) => {
+            <section className="wrapper">
+              <div className="container-fostrap">
+                <div className="content">
+                  <div className="container">
+                    <div className="row">
+                      {this.state.Articles.map((element) => {
                         return (
                           <NewsItem
                             key={element.url}
